@@ -7,16 +7,10 @@ export default function Home({currency}) {
   const [rate, setRate] = useState(0)
 
   useEffect(() => {
-    const url =
-      import.meta.env.VITE_API_URL +
-      'base_currency=' + currency +  
-      '&apikey=' +
-      import.meta.env.VITE_API_KEY
-
+    const url = import.meta.env.VITE_API_URL + currency
     console.log(url)
-
     axios.get(url)
-      .then((response) => setRate(response.data.data.EUR))
+      .then((response) => setRate(response.data.rate))
       .catch((error) => console.log(error))
   }, [])
 
